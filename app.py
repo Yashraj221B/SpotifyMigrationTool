@@ -79,7 +79,7 @@ def getAccessToken(client_id: str, client_secret: str, code: str) -> dict:
     
     url = "https://accounts.spotify.com/api/token"
     headers = {"Content-Type": "application/x-www-form-urlencoded", "Authorization": "Basic " + base64.b64encode((client_id + ":" + client_secret).encode()).decode()}
-    data = {"grant_type": "authorization_code", "code": code, "redirect_uri": "http://localhost:8731/callback"}
+    data = {"grant_type": "authorization_code", "code": code, "redirect_uri": "http://127.0.0.1:8731/callback"}
     response = requests.post(url, headers=headers, data=data)
     if response.status_code != 200:
         frameinfo = getframeinfo(currentframe())
@@ -99,7 +99,7 @@ def authorizeUser(client_id: str, scopes: str) -> dict:
     url = "https://accounts.spotify.com/authorize?" 
     url += "client_id=" + client_id
     url += "&response_type=code"
-    url += "&redirect_uri=http://localhost:8731/callback"
+    url += "&redirect_uri=http://127.0.0.1:8731/callback"
     url += "&scope=" + scopes
     webbrowser.open(url)
     logger.logInfo("Please authorize the application to access your Spotify account. You will be redirected to a page with an authorization code.")
