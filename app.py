@@ -288,13 +288,13 @@ def getUserInfo(access_token: str) -> dict:
         exit(-1)
     logger.logSuccess("User info received successfully.")
     response = json.loads(response.text)
-    if response["email"] is None:
-        logger.logWarning("Email not provided by user.")
-        response["email"] = "Not Provided"
+    # if response["email"] is None:
+    #     logger.logWarning("Email not provided by user.")
+    #     response["email"] = "Not Provided"
     return {
         "id": response["id"],
         "display_name": response["display_name"],
-        "email": response["email"],
+        # "email": response["email"],
         "images": [image["url"] for image in response["images"]]
     }
 
